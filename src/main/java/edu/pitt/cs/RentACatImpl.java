@@ -19,6 +19,21 @@ public class RentACatImpl implements RentACat {
 
 	public boolean returnCat(int id) {
 		// TODO: Fill in
+		//cat must exist and be rented out
+		for (Cat c : cats) {
+			if (c.getId() == id) {
+				if(c.getRented()){
+					c.returnCat();
+					System.out.print("Welcome back, " + c.getName() + "!\n");
+					return true;
+				}
+				else{
+					System.out.print(c.getName() + " is already here!\n");
+					return false;
+				}
+			}
+		}
+
 		return false;
 	}
 
@@ -34,6 +49,24 @@ public class RentACatImpl implements RentACat {
 
 	public boolean rentCat(int id) {
 		// TODO: Fill in
+
+
+		for (Cat c : cats) {
+			if (c.getId() == id) {
+				if(!c.getRented()){
+					//cat isnt already rented
+					c.rentCat();
+					System.out.print(c.getName() + " has been rented.\n");
+					return true;
+				}
+				else{
+					//cat is already rented
+					System.out.print("Sorry, " + c.getName() + " is not here!\n");
+					return false;
+				}
+			}
+		}
+		//cat doesnt exist
 		return false;
 	}
 
@@ -48,6 +81,15 @@ public class RentACatImpl implements RentACat {
 
 	public boolean renameCat(int id, String name) {
 		// TODO: Fill in
+
+		for (Cat c : cats) {
+			if (c.getId() == id) {
+				//found cat with same id
+				c.renameCat(name);
+				return true;
+			}
+		}
+		System.out.print("Invalid cat ID.\n");
 		return false;
 	}
 
@@ -63,7 +105,14 @@ public class RentACatImpl implements RentACat {
 
 	public String listCats() {
 		// TODO: Fill in
-		return "WRITE CODE FOR THIS";
+		String retString = "";
+		for (Cat c : cats) {
+			if (!c.getRented()){
+				retString = retString + c.toString()+ "\n";
+			}
+		}
+		//System.out.print("RS" + retString);
+		return retString;
 	}
 
 	/**
@@ -93,7 +142,7 @@ public class RentACatImpl implements RentACat {
 		// If we get all the way through the list and did
 		// not find a cat whose ID matches the passed-in
 		// ID, then the cat is not in the list
-		System.out.println("Invalid cat ID.");
+		System.out.print("Invalid cat ID.\n");
 		return null;
 
 	}
@@ -106,6 +155,7 @@ public class RentACatImpl implements RentACat {
 
 	public void addCat(Cat c) {
 		cats.add(c);
+		//System.out.print("added cat " + c);
 	}
 
 	/**
