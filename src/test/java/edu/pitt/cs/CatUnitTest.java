@@ -32,6 +32,9 @@ public class CatUnitTest {
 		// Passing InstanceType.MOCK as the first parameter will create a mock cat using Mockito.
 		// Which type is the correct choice for this unit test?  I'll leave it up to you.  The answer is in the Unit Testing Part 2 lecture. :)
 		// TODO: Fill in
+		c = Cat.createInstance(InstanceType.IMPL, 1, "Jennyanydots");
+
+		
 	}
 
 	@After
@@ -52,6 +55,8 @@ public class CatUnitTest {
 	 */
 	@Test
 	public void testGetId() {
+		int id = c.getId();
+		assertEquals("id is not 1", 1, id);
 		// TODO: Fill in
 	}
 
@@ -64,9 +69,13 @@ public class CatUnitTest {
 	 * Postconditions: Return value is "Jennyanydots".
 	 * </pre>
 	 */
+
+
 	@Test
 	public void testGetName() {
 		// TODO: Fill in
+		String name = c.getName();
+		assertEquals("name is not Jennyanydots", "Jennyanydots", name);
 	}
 
 	/**
@@ -81,6 +90,8 @@ public class CatUnitTest {
 	@Test
 	public void testGetRented() {
 		// TODO: Fill in
+		boolean rented = c.getRented();
+		assertFalse("cat is rented", rented);
 	}
 
 	/**
@@ -95,6 +106,9 @@ public class CatUnitTest {
 	@Test
 	public void testToString() {
 		// TODO: Fill in
+		String toString = c.toString();
+		assertEquals("tostring is not correct", "ID 1. Jennyanydots", toString);
+
 	}
 
 	/**
@@ -110,6 +124,10 @@ public class CatUnitTest {
 	@Test
 	public void testRentCat() {
 		// TODO: Fill in
+		c.rentCat();
+		boolean rented = c.getRented();
+		assertTrue("cat is not rented", rented);
+
 	}
 
 	/**
@@ -126,6 +144,9 @@ public class CatUnitTest {
 	@Test
 	public void testReturnCat() {
 		// TODO: Fill in
+		c.returnCat();
+		boolean rented = c.getRented();
+		assertFalse("cat is still rented", rented);
 	}
 
 	/**
@@ -141,6 +162,12 @@ public class CatUnitTest {
 	@Test
 	public void testRenameCat() {
 		// TODO: Fill in
+		c.renameCat("Garfield");
+		String newName = c.getName();
+		String toString = c.toString();
+
+		assertEquals("newNAme isnt garfield", "Garfield", newName);
+		assertEquals("toString is incorrect", "ID 1. Garfield", toString);
 	}
 
 }
