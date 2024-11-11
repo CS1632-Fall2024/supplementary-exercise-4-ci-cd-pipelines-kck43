@@ -48,8 +48,8 @@ jobs:
   # Uploads dependency graph to GitHub to receive Dependabot alerts 
   update_dependence_graph:
 
-    needs: [mvn-test]
-    
+    needs: [maven_test]
+
     runs-on: ubuntu-latest
 
     permissions:
@@ -60,3 +60,5 @@ jobs:
     # https://github.com/marketplace/actions/maven-dependency-tree-dependency-submission
     - name: Update dependency graph
       uses: advanced-security/maven-dependency-submission-action@v3
+
+  
