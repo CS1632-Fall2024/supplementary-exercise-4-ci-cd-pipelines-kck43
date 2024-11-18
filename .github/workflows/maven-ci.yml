@@ -80,8 +80,8 @@ jobs:
       - name: Restore cached build
         uses: actions/cache@v3
         with:
-        key: cached-build-${{github.sha}}
-        path: .
+          key: cached-build-${{github.sha}}
+          path: .
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
